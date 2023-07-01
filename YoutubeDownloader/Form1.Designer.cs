@@ -1,4 +1,5 @@
-﻿namespace YoutubeDownloader
+﻿using PaintedControls;
+namespace YoutubeDownloader
 {
     partial class Form1
     {
@@ -28,299 +29,524 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.link_input = new System.Windows.Forms.TextBox();
-            this.start_button = new System.Windows.Forms.Button();
-            this.paste_button = new System.Windows.Forms.Button();
-            this.path_input = new System.Windows.Forms.TextBox();
-            this.browse_button = new System.Windows.Forms.Button();
-            this.state_label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.resolution_group = new System.Windows.Forms.GroupBox();
-            this.res_360p = new System.Windows.Forms.RadioButton();
-            this.res_720p = new System.Windows.Forms.RadioButton();
-            this.res_480p = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ext_panel = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.check_mp4 = new System.Windows.Forms.RadioButton();
-            this.check_mp3 = new System.Windows.Forms.RadioButton();
-            this.progress_panel = new System.Windows.Forms.Panel();
-            this.resolution_group.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.ext_panel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.progress_panel.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // progressBar
-            // 
-            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar.Location = new System.Drawing.Point(8, 40);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(489, 34);
-            this.progressBar.TabIndex = 1;
-            // 
-            // link_input
-            // 
-            this.link_input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.link_input.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.link_input.Location = new System.Drawing.Point(59, 49);
-            this.link_input.Name = "link_input";
-            this.link_input.Size = new System.Drawing.Size(345, 33);
-            this.link_input.TabIndex = 2;
-            // 
-            // start_button
-            // 
-            this.start_button.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.start_button.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.start_button.Location = new System.Drawing.Point(360, 20);
-            this.start_button.Name = "start_button";
-            this.start_button.Size = new System.Drawing.Size(150, 53);
-            this.start_button.TabIndex = 3;
-            this.start_button.Text = "Download";
-            this.start_button.UseVisualStyleBackColor = true;
-            this.start_button.Click += new System.EventHandler(this.start_button_Click);
-            // 
-            // paste_button
-            // 
-            this.paste_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.paste_button.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.paste_button.Location = new System.Drawing.Point(410, 49);
-            this.paste_button.Name = "paste_button";
-            this.paste_button.Size = new System.Drawing.Size(100, 34);
-            this.paste_button.TabIndex = 4;
-            this.paste_button.Text = "Paste";
-            this.paste_button.UseVisualStyleBackColor = true;
-            this.paste_button.Click += new System.EventHandler(this.paste_button_Click);
-            // 
-            // path_input
-            // 
-            this.path_input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.path_input.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.path_input.Location = new System.Drawing.Point(59, 9);
-            this.path_input.Name = "path_input";
-            this.path_input.Size = new System.Drawing.Size(345, 33);
-            this.path_input.TabIndex = 5;
-            // 
-            // browse_button
-            // 
-            this.browse_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browse_button.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.browse_button.Location = new System.Drawing.Point(410, 9);
-            this.browse_button.Name = "browse_button";
-            this.browse_button.Size = new System.Drawing.Size(100, 33);
-            this.browse_button.TabIndex = 6;
-            this.browse_button.Text = "Browse...";
-            this.browse_button.UseVisualStyleBackColor = true;
-            this.browse_button.Click += new System.EventHandler(this.browse_button_Click);
+            state_label = new Label();
+            progressBar = new PaintedProgressBar();
+            customPanel1 = new CustomPanel();
+            label4 = new Label();
+            link_input = new CustomTextBox();
+            path_input = new CustomTextBox();
+            paste_button = new CustomButton();
+            browse_button = new CustomButton();
+            label3 = new Label();
+            ext_panel = new CustomPanel();
+            check_mp3 = new CustomCheckBox();
+            check_mp4 = new CustomCheckBox();
+            label1 = new Label();
+            start_button = new CustomButton();
+            resolution_group = new CustomPanel();
+            check_360 = new CustomCheckBox();
+            check_480 = new CustomCheckBox();
+            check_720 = new CustomCheckBox();
+            label2 = new Label();
+            progress_panel = new CustomPanel();
+            customPanel1.SuspendLayout();
+            ext_panel.SuspendLayout();
+            resolution_group.SuspendLayout();
+            progress_panel.SuspendLayout();
+            SuspendLayout();
             // 
             // state_label
             // 
-            this.state_label.AutoSize = true;
-            this.state_label.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.state_label.Location = new System.Drawing.Point(8, 11);
-            this.state_label.Name = "state_label";
-            this.state_label.Size = new System.Drawing.Size(251, 25);
-            this.state_label.TabIndex = 9;
-            this.state_label.Text = "Paste url link and download!";
+            state_label.AutoSize = true;
+            state_label.BackColor = Color.Black;
+            state_label.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            state_label.ForeColor = Color.White;
+            state_label.Location = new Point(30, 9);
+            state_label.Name = "state_label";
+            state_label.Size = new Size(250, 25);
+            state_label.TabIndex = 9;
+            state_label.Text = "Paste url link and download!";
             // 
-            // label1
+            // progressBar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 25);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Link";
+            progressBar.BackColor = Color.FromArgb(255, 192, 255);
+            progressBar.Location = new Point(23, 43);
+            progressBar.Name = "progressBar";
+            progressBar.Percent = 10F;
+            progressBar.ProgressMainColor = Color.Cyan;
+            progressBar.ProgressSubColor = Color.Blue;
+            progressBar.Size = new Size(480, 28);
+            progressBar.TabIndex = 10;
+            progressBar.Text = "paintedProgressBar1";
             // 
-            // label2
+            // customPanel1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 25);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Path";
+            customPanel1.BackColors.CurrentState = 0;
+            customPanel1.BackColors.DefaultColor = Color.Black;
+            customPanel1.BackColors.HoverColor = Color.Black;
+            customPanel1.BackColors.PressColor = Color.Black;
+            customPanel1.BorderWidth = 2;
+            customPanel1.ClientHeight = 98;
+            customPanel1.ClientWidth = 518;
+            customPanel1.Controls.Add(label4);
+            customPanel1.Controls.Add(paste_button);
+            customPanel1.Controls.Add(browse_button);
+            customPanel1.Controls.Add(label3);
+            customPanel1.Controls.Add(link_input);
+            customPanel1.Controls.Add(path_input);
+            customPanel1.CurrentState = 0;
+            customPanel1.Dock = DockStyle.Top;
+            customPanel1.ForeColors.CurrentState = 0;
+            customPanel1.ForeColors.DefaultColor = Color.FromArgb(255, 192, 255);
+            customPanel1.ForeColors.HoverColor = Color.FromArgb(255, 192, 255);
+            customPanel1.ForeColors.PressColor = Color.Yellow;
+            customPanel1.Location = new Point(0, 0);
+            customPanel1.Name = "customPanel1";
             // 
-            // resolution_group
             // 
-            this.resolution_group.Controls.Add(this.res_360p);
-            this.resolution_group.Controls.Add(this.res_720p);
-            this.resolution_group.Controls.Add(this.res_480p);
-            this.resolution_group.Dock = System.Windows.Forms.DockStyle.Top;
-            this.resolution_group.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.resolution_group.Location = new System.Drawing.Point(0, 177);
-            this.resolution_group.Name = "resolution_group";
-            this.resolution_group.Size = new System.Drawing.Size(534, 80);
-            this.resolution_group.TabIndex = 15;
-            this.resolution_group.TabStop = false;
-            this.resolution_group.Text = "Resolution";
             // 
-            // res_360p
+            customPanel1.Panel.BackColor = Color.Black;
+            customPanel1.Panel.Location = new Point(2, 2);
+            customPanel1.Panel.Name = "";
+            customPanel1.Panel.Size = new Size(518, 98);
+            customPanel1.Panel.TabIndex = 0;
+            customPanel1.Size = new Size(522, 102);
+            customPanel1.TabIndex = 19;
+            customPanel1.Text = "customPanel1";
             // 
-            this.res_360p.Appearance = System.Windows.Forms.Appearance.Button;
-            this.res_360p.AutoSize = true;
-            this.res_360p.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.res_360p.Location = new System.Drawing.Point(168, 34);
-            this.res_360p.Name = "res_360p";
-            this.res_360p.Size = new System.Drawing.Size(63, 35);
-            this.res_360p.TabIndex = 16;
-            this.res_360p.TabStop = true;
-            this.res_360p.Text = "360p";
-            this.res_360p.UseVisualStyleBackColor = true;
+            // label4
             // 
-            // res_720p
+            label4.BackColor = Color.Black;
+            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonFace;
+            label4.Location = new Point(12, 12);
+            label4.Name = "label4";
+            label4.Size = new Size(49, 30);
+            label4.TabIndex = 13;
+            label4.Text = "Path";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            this.res_720p.Appearance = System.Windows.Forms.Appearance.Button;
-            this.res_720p.AutoSize = true;
-            this.res_720p.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.res_720p.Location = new System.Drawing.Point(30, 34);
-            this.res_720p.Name = "res_720p";
-            this.res_720p.Size = new System.Drawing.Size(63, 35);
-            this.res_720p.TabIndex = 17;
-            this.res_720p.TabStop = true;
-            this.res_720p.Text = "720p";
-            this.res_720p.UseVisualStyleBackColor = true;
+            // link_input
             // 
-            // res_480p
+            link_input.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            link_input.BackColors.CurrentState = 0;
+            link_input.BackColors.DefaultColor = Color.Black;
+            link_input.BackColors.HoverColor = Color.Black;
+            link_input.BackColors.PressColor = Color.Black;
+            link_input.BorderWidth = 2;
+            link_input.ClientHeight = 26;
+            link_input.ClientWidth = 306;
+            link_input.CurrentState = 0;
+            link_input.FontName = "Consolas";
+            link_input.ForeColors.CurrentState = 0;
+            link_input.ForeColors.DefaultColor = Color.White;
+            link_input.ForeColors.HoverColor = Color.FromArgb(255, 192, 128);
+            link_input.ForeColors.PressColor = Color.Yellow;
+            link_input.Location = new Point(67, 54);
+            link_input.MinimumSize = new Size(7, 7);
+            link_input.Name = "link_input";
+            link_input.Size = new Size(310, 30);
+            link_input.TabIndex = 15;
+            link_input.Text = " ";
             // 
-            this.res_480p.Appearance = System.Windows.Forms.Appearance.Button;
-            this.res_480p.AutoSize = true;
-            this.res_480p.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.res_480p.Location = new System.Drawing.Point(99, 34);
-            this.res_480p.Name = "res_480p";
-            this.res_480p.Size = new System.Drawing.Size(63, 35);
-            this.res_480p.TabIndex = 18;
-            this.res_480p.TabStop = true;
-            this.res_480p.Text = "480p";
-            this.res_480p.UseVisualStyleBackColor = true;
+            // path_input
             // 
-            // panel1
+            path_input.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            path_input.BackColors.CurrentState = 0;
+            path_input.BackColors.DefaultColor = Color.Black;
+            path_input.BackColors.HoverColor = Color.Black;
+            path_input.BackColors.PressColor = Color.Black;
+            path_input.BorderWidth = 2;
+            path_input.ClientHeight = 26;
+            path_input.ClientWidth = 306;
+            path_input.CurrentState = 0;
+            path_input.FontName = "Consolas";
+            path_input.ForeColors.CurrentState = 0;
+            path_input.ForeColors.DefaultColor = Color.White;
+            path_input.ForeColors.HoverColor = Color.FromArgb(255, 192, 128);
+            path_input.ForeColors.PressColor = Color.Yellow;
+            path_input.Location = new Point(67, 12);
+            path_input.MinimumSize = new Size(7, 7);
+            path_input.Name = "path_input";
+            path_input.Size = new Size(310, 30);
+            path_input.TabIndex = 14;
+            path_input.Text = " ";
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.paste_button);
-            this.panel1.Controls.Add(this.path_input);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.browse_button);
-            this.panel1.Controls.Add(this.link_input);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(200, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(534, 95);
-            this.panel1.TabIndex = 16;
+            // paste_button
+            // 
+            paste_button.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            paste_button.BackColors.CurrentState = 0;
+            paste_button.BackColors.DefaultColor = Color.Black;
+            paste_button.BackColors.HoverColor = Color.Navy;
+            paste_button.BackColors.PressColor = Color.FromArgb(192, 192, 255);
+            paste_button.BorderWidth = 2;
+            paste_button.ClientHeight = 26;
+            paste_button.ClientWidth = 96;
+            paste_button.CurrentState = 0;
+            paste_button.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            paste_button.ForeColors.CurrentState = 0;
+            paste_button.ForeColors.DefaultColor = Color.White;
+            paste_button.ForeColors.HoverColor = Color.FromArgb(192, 255, 255);
+            paste_button.ForeColors.PressColor = Color.Maroon;
+            paste_button.Location = new Point(397, 54);
+            paste_button.Name = "paste_button";
+            paste_button.Size = new Size(100, 30);
+            paste_button.TabIndex = 17;
+            paste_button.Text = "Paste";
+            paste_button.Click += paste_button_Click;
+            // 
+            // browse_button
+            // 
+            browse_button.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            browse_button.BackColors.CurrentState = 0;
+            browse_button.BackColors.DefaultColor = Color.Black;
+            browse_button.BackColors.HoverColor = Color.Navy;
+            browse_button.BackColors.PressColor = Color.FromArgb(192, 192, 255);
+            browse_button.BorderWidth = 2;
+            browse_button.ClientHeight = 26;
+            browse_button.ClientWidth = 96;
+            browse_button.CurrentState = 0;
+            browse_button.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            browse_button.ForeColors.CurrentState = 0;
+            browse_button.ForeColors.DefaultColor = Color.White;
+            browse_button.ForeColors.HoverColor = Color.FromArgb(192, 255, 255);
+            browse_button.ForeColors.PressColor = Color.Maroon;
+            browse_button.Location = new Point(397, 12);
+            browse_button.Name = "browse_button";
+            browse_button.Size = new Size(100, 30);
+            browse_button.TabIndex = 16;
+            browse_button.Text = "Browse...";
+            browse_button.Click += browse_button_Click;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.Black;
+            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonFace;
+            label3.Location = new Point(12, 54);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 30);
+            label3.TabIndex = 12;
+            label3.Text = "Link";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ext_panel
             // 
-            this.ext_panel.Controls.Add(this.groupBox1);
-            this.ext_panel.Controls.Add(this.start_button);
-            this.ext_panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ext_panel.Location = new System.Drawing.Point(0, 95);
-            this.ext_panel.Name = "ext_panel";
-            this.ext_panel.Size = new System.Drawing.Size(534, 82);
-            this.ext_panel.TabIndex = 17;
+            ext_panel.BackColors.CurrentState = 0;
+            ext_panel.BackColors.DefaultColor = Color.Black;
+            ext_panel.BackColors.HoverColor = Color.Black;
+            ext_panel.BackColors.PressColor = Color.Black;
+            ext_panel.BorderWidth = 2;
+            ext_panel.ClientHeight = 98;
+            ext_panel.ClientWidth = 518;
+            ext_panel.Controls.Add(check_mp3);
+            ext_panel.Controls.Add(check_mp4);
+            ext_panel.Controls.Add(label1);
+            ext_panel.Controls.Add(start_button);
+            ext_panel.CurrentState = 0;
+            ext_panel.Dock = DockStyle.Top;
+            ext_panel.ForeColors.CurrentState = 0;
+            ext_panel.ForeColors.DefaultColor = Color.FromArgb(255, 192, 255);
+            ext_panel.ForeColors.HoverColor = Color.FromArgb(255, 192, 255);
+            ext_panel.ForeColors.PressColor = Color.Yellow;
+            ext_panel.Location = new Point(0, 102);
+            ext_panel.Name = "ext_panel";
             // 
-            // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.check_mp4);
-            this.groupBox1.Controls.Add(this.check_mp3);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(0, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 76);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Extension";
             // 
-            // check_mp4
-            // 
-            this.check_mp4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.check_mp4.AutoSize = true;
-            this.check_mp4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.check_mp4.Location = new System.Drawing.Point(30, 32);
-            this.check_mp4.Name = "check_mp4";
-            this.check_mp4.Size = new System.Drawing.Size(59, 35);
-            this.check_mp4.TabIndex = 19;
-            this.check_mp4.Text = "mp4";
-            this.check_mp4.UseVisualStyleBackColor = true;
-            this.check_mp4.CheckedChanged += new System.EventHandler(this.check_mp4_CheckedChanged_1);
+            ext_panel.Panel.BackColor = Color.Black;
+            ext_panel.Panel.Location = new Point(2, 2);
+            ext_panel.Panel.Name = "";
+            ext_panel.Panel.Size = new Size(518, 98);
+            ext_panel.Panel.TabIndex = 0;
+            ext_panel.Size = new Size(522, 102);
+            ext_panel.TabIndex = 20;
+            ext_panel.Text = "customPanel2";
             // 
             // check_mp3
             // 
-            this.check_mp3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.check_mp3.AutoSize = true;
-            this.check_mp3.Checked = true;
-            this.check_mp3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.check_mp3.Location = new System.Drawing.Point(99, 32);
-            this.check_mp3.Name = "check_mp3";
-            this.check_mp3.Size = new System.Drawing.Size(59, 35);
-            this.check_mp3.TabIndex = 20;
-            this.check_mp3.TabStop = true;
-            this.check_mp3.Text = "mp3";
-            this.check_mp3.UseVisualStyleBackColor = true;
+            check_mp3.BackColors.CheckColor = Color.Cyan;
+            check_mp3.BackColors.CurrentState = 0;
+            check_mp3.BackColors.DefaultColor = Color.Black;
+            check_mp3.BackColors.HoverColor = Color.Navy;
+            check_mp3.BackColors.PressColor = Color.Yellow;
+            check_mp3.BorderWidth = 2;
+            check_mp3.Checked = false;
+            check_mp3.ClientHeight = 40;
+            check_mp3.ClientWidth = 64;
+            check_mp3.CurrentState = 0;
+            check_mp3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            check_mp3.ForeColors.CheckColor = Color.Black;
+            check_mp3.ForeColors.CurrentState = 0;
+            check_mp3.ForeColors.DefaultColor = Color.White;
+            check_mp3.ForeColors.HoverColor = Color.FromArgb(255, 255, 128);
+            check_mp3.ForeColors.PressColor = Color.FromArgb(0, 0, 192);
+            check_mp3.Location = new Point(109, 41);
+            check_mp3.Name = "check_mp3";
+            check_mp3.Size = new Size(68, 44);
+            check_mp3.TabIndex = 20;
+            check_mp3.Text = "mp3";
+            check_mp3.Click += OnMPClick;
+            // 
+            // check_mp4
+            // 
+            check_mp4.BackColors.CheckColor = Color.Cyan;
+            check_mp4.BackColors.CurrentState = 0;
+            check_mp4.BackColors.DefaultColor = Color.Black;
+            check_mp4.BackColors.HoverColor = Color.Navy;
+            check_mp4.BackColors.PressColor = Color.Yellow;
+            check_mp4.BorderWidth = 2;
+            check_mp4.Checked = false;
+            check_mp4.ClientHeight = 40;
+            check_mp4.ClientWidth = 64;
+            check_mp4.CurrentState = 0;
+            check_mp4.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            check_mp4.ForeColors.CheckColor = Color.Black;
+            check_mp4.ForeColors.CurrentState = 0;
+            check_mp4.ForeColors.DefaultColor = Color.White;
+            check_mp4.ForeColors.HoverColor = Color.FromArgb(255, 255, 128);
+            check_mp4.ForeColors.PressColor = Color.FromArgb(0, 0, 192);
+            check_mp4.Location = new Point(30, 41);
+            check_mp4.Name = "check_mp4";
+            check_mp4.Size = new Size(68, 44);
+            check_mp4.TabIndex = 19;
+            check_mp4.Text = "mp4";
+            check_mp4.Click += OnMPClick;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.Black;
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonFace;
+            label1.Location = new Point(30, 2);
+            label1.Name = "label1";
+            label1.Size = new Size(147, 36);
+            label1.TabIndex = 18;
+            label1.Text = "Extension";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // start_button
+            // 
+            start_button.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            start_button.BackColors.CurrentState = 0;
+            start_button.BackColors.DefaultColor = Color.Black;
+            start_button.BackColors.HoverColor = Color.Black;
+            start_button.BackColors.PressColor = Color.FromArgb(128, 255, 255);
+            start_button.BorderWidth = 2;
+            start_button.ClientHeight = 55;
+            start_button.ClientWidth = 195;
+            start_button.CurrentState = 0;
+            start_button.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            start_button.ForeColors.CurrentState = 0;
+            start_button.ForeColors.DefaultColor = Color.White;
+            start_button.ForeColors.HoverColor = Color.Yellow;
+            start_button.ForeColors.PressColor = Color.Red;
+            start_button.Location = new Point(298, 26);
+            start_button.Name = "start_button";
+            start_button.Size = new Size(199, 59);
+            start_button.TabIndex = 21;
+            start_button.Text = "Download";
+            start_button.Click += start_button_Click;
+            // 
+            // resolution_group
+            // 
+            resolution_group.BackColors.CurrentState = 0;
+            resolution_group.BackColors.DefaultColor = Color.Black;
+            resolution_group.BackColors.HoverColor = Color.Black;
+            resolution_group.BackColors.PressColor = Color.Black;
+            resolution_group.BorderWidth = 2;
+            resolution_group.ClientHeight = 98;
+            resolution_group.ClientWidth = 518;
+            resolution_group.Controls.Add(check_360);
+            resolution_group.Controls.Add(check_480);
+            resolution_group.Controls.Add(check_720);
+            resolution_group.Controls.Add(label2);
+            resolution_group.CurrentState = 0;
+            resolution_group.Dock = DockStyle.Top;
+            resolution_group.ForeColors.CurrentState = 0;
+            resolution_group.ForeColors.DefaultColor = Color.FromArgb(255, 192, 255);
+            resolution_group.ForeColors.HoverColor = Color.FromArgb(255, 192, 255);
+            resolution_group.ForeColors.PressColor = Color.Yellow;
+            resolution_group.Location = new Point(0, 204);
+            resolution_group.Name = "resolution_group";
+            // 
+            // 
+            // 
+            resolution_group.Panel.BackColor = Color.Black;
+            resolution_group.Panel.Location = new Point(2, 2);
+            resolution_group.Panel.Name = "";
+            resolution_group.Panel.Size = new Size(518, 98);
+            resolution_group.Panel.TabIndex = 0;
+            resolution_group.Size = new Size(522, 102);
+            resolution_group.TabIndex = 21;
+            resolution_group.Text = "customPanel2";
+            // 
+            // check_360
+            // 
+            check_360.BackColors.CheckColor = Color.Cyan;
+            check_360.BackColors.CurrentState = 0;
+            check_360.BackColors.DefaultColor = Color.Black;
+            check_360.BackColors.HoverColor = Color.Navy;
+            check_360.BackColors.PressColor = Color.Yellow;
+            check_360.BorderWidth = 2;
+            check_360.Checked = false;
+            check_360.ClientHeight = 40;
+            check_360.ClientWidth = 64;
+            check_360.CurrentState = 0;
+            check_360.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            check_360.ForeColors.CheckColor = Color.Black;
+            check_360.ForeColors.CurrentState = 0;
+            check_360.ForeColors.DefaultColor = Color.White;
+            check_360.ForeColors.HoverColor = Color.FromArgb(255, 255, 128);
+            check_360.ForeColors.PressColor = Color.FromArgb(0, 0, 192);
+            check_360.Location = new Point(190, 42);
+            check_360.Name = "check_360";
+            check_360.Size = new Size(68, 44);
+            check_360.TabIndex = 24;
+            check_360.Text = "360p";
+            check_360.Click += OnResClick;
+            check_360.DoubleClick += OnResClick;
+            // 
+            // check_480
+            // 
+            check_480.BackColors.CheckColor = Color.Cyan;
+            check_480.BackColors.CurrentState = 0;
+            check_480.BackColors.DefaultColor = Color.Black;
+            check_480.BackColors.HoverColor = Color.Navy;
+            check_480.BackColors.PressColor = Color.Yellow;
+            check_480.BorderWidth = 2;
+            check_480.Checked = false;
+            check_480.ClientHeight = 40;
+            check_480.ClientWidth = 64;
+            check_480.CurrentState = 0;
+            check_480.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            check_480.ForeColors.CheckColor = Color.Black;
+            check_480.ForeColors.CurrentState = 0;
+            check_480.ForeColors.DefaultColor = Color.White;
+            check_480.ForeColors.HoverColor = Color.FromArgb(255, 255, 128);
+            check_480.ForeColors.PressColor = Color.FromArgb(0, 0, 192);
+            check_480.Location = new Point(109, 42);
+            check_480.Name = "check_480";
+            check_480.Size = new Size(68, 44);
+            check_480.TabIndex = 23;
+            check_480.Text = "480p";
+            check_480.Click += OnResClick;
+            check_480.DoubleClick += OnResClick;
+            // 
+            // check_720
+            // 
+            check_720.BackColors.CheckColor = Color.Cyan;
+            check_720.BackColors.CurrentState = 0;
+            check_720.BackColors.DefaultColor = Color.Black;
+            check_720.BackColors.HoverColor = Color.Navy;
+            check_720.BackColors.PressColor = Color.Yellow;
+            check_720.BorderWidth = 2;
+            check_720.Checked = false;
+            check_720.ClientHeight = 40;
+            check_720.ClientWidth = 64;
+            check_720.CurrentState = 0;
+            check_720.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            check_720.ForeColors.CheckColor = Color.Black;
+            check_720.ForeColors.CurrentState = 0;
+            check_720.ForeColors.DefaultColor = Color.White;
+            check_720.ForeColors.HoverColor = Color.FromArgb(255, 255, 128);
+            check_720.ForeColors.PressColor = Color.FromArgb(0, 0, 192);
+            check_720.Location = new Point(30, 42);
+            check_720.Name = "check_720";
+            check_720.Size = new Size(68, 44);
+            check_720.TabIndex = 22;
+            check_720.Text = "720p";
+            check_720.Click += OnResClick;
+            check_720.DoubleClick += OnResClick;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Black;
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ButtonFace;
+            label2.Location = new Point(76, 3);
+            label2.Name = "label2";
+            label2.Size = new Size(147, 36);
+            label2.TabIndex = 21;
+            label2.Text = "Resolution";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // progress_panel
             // 
-            this.progress_panel.Controls.Add(this.state_label);
-            this.progress_panel.Controls.Add(this.progressBar);
-            this.progress_panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progress_panel.Location = new System.Drawing.Point(0, 257);
-            this.progress_panel.Name = "progress_panel";
-            this.progress_panel.Size = new System.Drawing.Size(534, 77);
-            this.progress_panel.TabIndex = 18;
+            progress_panel.BackColors.CurrentState = 0;
+            progress_panel.BackColors.DefaultColor = Color.Black;
+            progress_panel.BackColors.HoverColor = Color.Black;
+            progress_panel.BackColors.PressColor = Color.Black;
+            progress_panel.BorderWidth = 2;
+            progress_panel.ClientHeight = 90;
+            progress_panel.ClientWidth = 518;
+            progress_panel.Controls.Add(progressBar);
+            progress_panel.Controls.Add(state_label);
+            progress_panel.CurrentState = 0;
+            progress_panel.Dock = DockStyle.Fill;
+            progress_panel.ForeColors.CurrentState = 0;
+            progress_panel.ForeColors.DefaultColor = Color.FromArgb(255, 192, 255);
+            progress_panel.ForeColors.HoverColor = Color.FromArgb(255, 192, 255);
+            progress_panel.ForeColors.PressColor = Color.Yellow;
+            progress_panel.Location = new Point(0, 306);
+            progress_panel.Name = "progress_panel";
+            // 
+            // 
+            // 
+            progress_panel.Panel.BackColor = Color.Black;
+            progress_panel.Panel.Location = new Point(2, 2);
+            progress_panel.Panel.Name = "";
+            progress_panel.Panel.Size = new Size(518, 90);
+            progress_panel.Panel.TabIndex = 0;
+            progress_panel.Size = new Size(522, 94);
+            progress_panel.TabIndex = 22;
+            progress_panel.Text = "customPanel2";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 336);
-            this.Controls.Add(this.progress_panel);
-            this.Controls.Add(this.resolution_group);
-            this.Controls.Add(this.ext_panel);
-            this.Controls.Add(this.panel1);
-            this.MinimumSize = new System.Drawing.Size(450, 0);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.resolution_group.ResumeLayout(false);
-            this.resolution_group.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ext_panel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.progress_panel.ResumeLayout(false);
-            this.progress_panel.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(522, 400);
+            Controls.Add(progress_panel);
+            Controls.Add(resolution_group);
+            Controls.Add(ext_panel);
+            Controls.Add(customPanel1);
+            MinimumSize = new Size(450, 0);
+            Name = "Form1";
+            Text = "Form1";
+            customPanel1.ResumeLayout(false);
+            ext_panel.ResumeLayout(false);
+            resolution_group.ResumeLayout(false);
+            progress_panel.ResumeLayout(false);
+            progress_panel.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
-        private ProgressBar progressBar;
-        private TextBox link_input;
-        private Button start_button;
-        private Button paste_button;
-        private TextBox path_input;
-        private Button browse_button;
+        private CustomTextBox link_input;
+        private CustomButton paste_button;
+        private CustomTextBox path_input;
+        private CustomButton browse_button;
+        private CustomCheckBox check_mp3;
+        private CustomCheckBox check_mp4;
+        private CustomPanel ext_panel;
         private Label state_label;
         private Label label1;
-        private Label label2;
-        private GroupBox resolution_group;
-        private RadioButton res_360p;
-        private RadioButton res_720p;
-        private RadioButton res_480p;
+        private CustomPanel resolution_group;
         private Panel panel1;
-        private Panel ext_panel;
-        private Panel progress_panel;
-        private GroupBox groupBox1;
-        private RadioButton check_mp4;
-        private RadioButton check_mp3;
+        private PaintedProgressBar progressBar;
+        private CustomPanel customPanel1;
+        private Label label3;
+        private Label label4;
+        private CustomTextBox customTextBox2;
+        private CustomTextBox customTextBox1;
+        private CustomButton start_button;
+        private CustomPanel customPanel2;
+        private Label label2;
+        private CustomCheckBox check_480;
+        private CustomCheckBox check_360;
+        private CustomCheckBox check_720;
+        private CustomButton customButton1;
+        private CustomPanel progress_panel;
     }
 }

@@ -3,94 +3,45 @@ using MediaToolkit.Model;
 using YoutubeExplode;
 using YoutubeExplode.Common;
 using YoutubeExplode.Videos.Streams;
+using PaintedControls;
 namespace YoutubeDownloader
 {
     public partial class Form1 : Form
     {
-        public class FilePath
-        {
-            string file_name = "";
-            public string NameOnly
-            {
-                get { return file_name; }
-                set
-                {
-                    file_name = ReplaceInvalidChars(value);
-                }
-            }
-            public string Extension { get; set; } = "";
-            public string Folder { get; set; } = "";
-            public string Name
-            {
-                get
-                {
-                    return NameOnly + "." + Extension;
-                }
-            }
-            public string FullPath
-            {
-                get
-                {
-                    return Path.Combine(Folder, Name);
-                }
-            }
-            public string FullPathWithoutExt {
-                get
-                {
-                    return Path.Combine(Folder, NameOnly);
-                }
-            }
-            static string ReplaceInvalidChars(string filename)
-            {
-                return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
-            }
 
-        }
         FilePath videoPath;
+        CustomCheckBox LastResolution, LastFormat;
         public Form1()
         {
             InitializeComponent();
             videoPath = new();
             progressBar.Hide();
             resolution_group.Hide();
-
+            check_mp3.Checked = true;
+            LastFormat = check_mp3;
+            check_720.Checked = true;
+            LastResolution = check_720;
         }
-        void progress(double value)
-        {
-            progressBar.Value = (int)(100 * value);
-        }
-        void progress_event(object? sender, ConvertProgressEventArgs e)
-        {
-            var percent = e.ProcessedDuration.TotalSeconds/e.TotalDuration.TotalSeconds;
-            progress(percent);
-        }
-        void state(string text)
-        {
-            state_label.Text = text;
-        }
+        void Progress(double value) => progressBar.Percent = (int)(100 * value);
+        void ProgressEvent(object? sender, ConvertProgressEventArgs e) =>
+            Progress(e.ProcessedDuration.TotalSeconds / e.TotalDuration.TotalSeconds);
+        void State(string text) => state_label.Text = text;
         void ConvertToMP3()
         {
             var inputFile = new MediaFile(videoPath.FullPath);
             var outputFile = new MediaFile(videoPath.FullPathWithoutExt + ".mp3");
-            using (var ffmpeg = new Engine())
-            {
-                ffmpeg.ConvertProgressEvent += progress_event;
-                ffmpeg.ConversionCompleteEvent += (s, e) => { progress(1); };
-                ffmpeg.Convert(inputFile, outputFile);
-            }
+            using var ffmpeg = new Engine();
+            ffmpeg.ConvertProgressEvent += ProgressEvent;
+            ffmpeg.ConversionCompleteEvent += (s, e) => { Progress(1); };
+            ffmpeg.Convert(inputFile, outputFile);
         }
-        int getResolution()
-        {
-            RadioButton checkedButton = resolution_group.Controls.
-                OfType<RadioButton>().First(b => b.Checked);
-            string text = checkedButton.Text.Replace("p", "");
-            return int.Parse(text);
-        }
-        async void download(string ext)
+        int GetResolution() => int.Parse(LastResolution.Text.Replace("p", ""));
+
+        async void Download(string ext)
         {
             try
             {
-                state("Getting video info...");
+                State("Getting video info...");
                 string link = link_input.Text;
 
                 var youtube = new YoutubeClient();
@@ -105,7 +56,7 @@ namespace YoutubeDownloader
                 {
                     streamInfo = streamManifest.GetVideoStreams()
                         .Where(s => s.Container == YoutubeExplode.Videos.Streams.Container.Mp4)
-                        .Where(s => s.VideoResolution.Height == getResolution()).First();
+                        .Where(s => s.VideoResolution.Height == GetResolution()).First();
                 }
                 videoPath.NameOnly = videoInfo.Title;
 
@@ -113,20 +64,19 @@ namespace YoutubeDownloader
 
                 videoPath.Folder = path_input.Text;
                 switchShowProgressBar();
-                state("Downloading...");
+                State("Downloading...");
                 await youtube.Videos.Streams.DownloadAsync(streamInfo,
                     videoPath.FullPath,
-                    new Progress<double>(progress));
-                state("mp4 file downloaded!");
+                    new Progress<double>(Progress));
+                State("mp4 file downloaded!");
                 if (ext == "mp3")
                 {
-                    state("Converting ...");
-                    var task = new Task(() => ConvertToMP3());
-                    task.Start();
-                    await task;
-                    progress(1);
-                    state("mp3 file downloaded!");
-                    removeVideo();
+                    State("Converting ...");
+                    Progress(0);
+                    await Task.Run(() => ConvertToMP3());
+                    Progress(1);
+                    State("mp3 file downloaded!");
+                    RemoveVideo();
                 }
                 start_button.Enabled = true;
                 switchShowProgressBar();
@@ -140,7 +90,8 @@ namespace YoutubeDownloader
         }
         void switchShowProgressBar()
         {
-            progressBar.BeginInvoke(() => {
+            progressBar.BeginInvoke(() =>
+            {
                 if (progressBar.Visible)
                 {
                     progressBar.Hide();
@@ -158,30 +109,30 @@ namespace YoutubeDownloader
         }
         private void start_button_Click(object sender, EventArgs e)
         {
-            progress(0);
+            Progress(0);
             start_button.Enabled = false;
             try
             {
                 if (check_mp3.Checked)
                 {
-                    download("mp3");
+                    Download("mp3");
                 }
                 else if (check_mp4.Checked)
                 {
-                    download("mp4");
+                    Download("mp4");
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 reset();
             }
-            
+
         }
 
         private void browse_button_Click(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog();
-            if(dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 path_input.Text = dialog.SelectedPath;
             }
@@ -192,13 +143,27 @@ namespace YoutubeDownloader
             link_input.Text = Clipboard.GetText();
         }
 
-        void removeVideo()
-        {
-            File.Delete(videoPath.FullPath);
-        }
+        void RemoveVideo() => File.Delete(videoPath.FullPath);
 
-        private void check_mp4_CheckedChanged_1(object sender, EventArgs e)
+        private void OnMPClick(object sender, EventArgs e)
         {
+            var checkButton = (CustomCheckBox)sender;
+
+            if (Equals(checkButton, LastFormat))
+            {
+                checkButton.Checked = true;
+                return;
+            }
+            LastFormat = checkButton;
+            var checks = new[] { check_mp3, check_mp4 };
+
+            foreach (CustomCheckBox check in checks)
+            {
+                if (!Equals(checkButton, check))
+                {
+                    check.Checked = false;
+                }
+            }
             if (check_mp4.Checked)
             {
                 resolution_group.Show();
@@ -206,6 +171,27 @@ namespace YoutubeDownloader
             else
             {
                 resolution_group.Hide();
+            }
+        }
+
+        private void OnResClick(object sender, EventArgs e)
+        {
+            var checkButton = (CustomCheckBox)sender;
+
+            if (Equals(checkButton, LastResolution))
+            {
+                checkButton.Checked = true;
+                return;
+            }
+            LastResolution = checkButton;
+            var checks = new[] { check_720, check_480, check_360 };
+
+            foreach (CustomCheckBox check in checks)
+            {
+                if (!Equals(checkButton, check))
+                {
+                    check.Checked = false;
+                }
             }
         }
     }
