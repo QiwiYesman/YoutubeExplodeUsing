@@ -11,4 +11,4 @@ mp4 може бути завантажено у якості:
 Також є додаток на Android, що використовує ті ж техногії і має ту ж зовнішню структуру в репозиторії YoutubeMPLoader.
 Однак даний репозиторій не містить файл проєкту, а лише файли для відновлення і інструкцію для відновлення.
 
-[preview](https://github.com/QiwiYesman/YoutubeExplodeUsing/blob/83a85cc7b8c0040307ddd6af63257486664c4b17/img_22.png)
+![preview](https://github.com/QiwiYesman/YoutubeExplodeUsing/blob/83a85cc7b8c0040307ddd6af63257486664c4b17/img_22.png)
